@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Selwyn Campground - Search Customer</h2>
+
+<form action="{{ url_for('search_customer')}}" class="needs-validation" novalidate>
+    <!--Prompt user search by Name or Phone-->
+    <label for="search_customer">Customer:</label>
+    <input type="text" id="search_customer" name="search_customer" pattern="[A-Za-z]*|[0-9]*" placeholder="Name or Phone" required>
+        <div class="invalid-feedback">
+            Please enter letters (a-z,A-Z) or numbers only 
+        </div>
+    <input type="submit" value="Search">
+</form>
+
+{% endblock %}

@@ -74,3 +74,45 @@ def makebooking():
         connection.execute("INSERT INTO bookings(site, customer, booking_date, occupancy) \
                        VALUES(%s, %s, %s, %s);",(siteId, customerId, booking_date, occupancy,))
     return render_template("bookingsuccess.html")
+
+@app.route("/customer/search")
+def search_customer():
+    # Check if a search parameter is provided in url (when user is redirected to here)
+    searchCustomer = request.args.get('search_customer')
+    if searchCustomer:
+        connection = getCursor()
+        # Search for matching customers, including partial text matches
+        connection.execute("SELECT * FROM customers WHERE firstname LIKE %s OR familyname LIKE %s OR phone LIKE %s;",\
+                            (f"%{searchCustomer}%", f"%{searchCustomer}%", f"%{searchCustomer}%"))
+        matchedCustomers = connection.fetchall()
+        return render_template("matchedcustomer.html", matched_customers = matchedCustomers)
+    # Get search data if it doesn't exist
+    else:
+        return render_template("searchcustomer.html")
+    
+@app.route("/customer/edit", methods=['GET','POST'])
+def edit_customer():
+    if request.method == 'GET':
+        # For user access from search customer page directly, customerID exist
+        customerID = request.args.get('customer_id')
+        if customerID:
+        # Retrieve customer information from database  
+            connection = getCursor()
+            connection.execute("SELECT * FROM customers WHERE customer_id=%s;", (customerID,))
+            customer_details = connection.fetchone()
+            return render_template("add_or_edit_customer.html", customer = customer_details)
+        # If user accessed the edit page directly, redirect to search customer page
+        else:
+            return redirect(url_for('search_customer'))
+        
+    elif request.method == 'POST':
+        # Update customer information
+        customerID = request.form.get('customer_id')
+        firstName = request.form.get('firstname')
+        familyName = request.form.get('familyname')
+        phoneNumber = request.form.get('phone')
+        emailAddress = request.form.get('email')
+        connection = getCursor()
+        connection.execute("UPDATE customers SET firstname=%s, familyname=%s, email=%s, phone=%s WHERE customer_id=%s;",\
+                        (firstName, familyName, emailAddress, phoneNumber, customerID))
+        return render_template("updatesuccess.html")
