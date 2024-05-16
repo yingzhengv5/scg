@@ -2,6 +2,29 @@
 {% block content %}
 <h2>Selwyn Campground - Camper List</h2>
 
+<!--Check if campers exist in the camperlist-->
+{% if camperlist %}
+    <form action="/campers" method="POST">
+        <!--Display campers in table-->
+        <table class="table table-default table-hover">  
+            <tr>
+                <th>Campsite</th>
+                <th>Customer Name</th>
+                <th>Occupancy</th>
+            </tr>  
+
 <!-- Insert code to loop over the list of campers and display them -->
+            {% for campers in camperlist %}
+            <tr>
+                <td>{{ campers[1] }}</td>
+                <td>{{ campers[8] }} {{ campers[9] }}</td>
+                <td>{{ campers[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+{% else %}
+    <p>There is no booking for the selected date</p>
+{% endif %}
 
 {% endblock %}

@@ -38,7 +38,7 @@ def campers():
         connection = getCursor()
         connection.execute("SELECT * FROM bookings join sites on site = site_id inner join customers on customer = customer_id where booking_date= %s;",(campDate,))
         camperList = connection.fetchall()
-        return render_template("datepickercamper.html", camperlist = camperList)
+        return render_template("camperlist.html", camperlist = camperList)
 
 @app.route("/booking", methods=['GET','POST'])
 def booking():
@@ -56,9 +56,21 @@ def booking():
         customerList = connection.fetchall()
         connection.execute("select * from sites where occupancy >= %s AND site_id not in (select site from bookings where booking_date between %s AND %s);",(occupancy,firstNight,lastNight))
         siteList = connection.fetchall()
-        return render_template("bookingform.html", customerlist = customerList, bookingdate=bookingDate, sitelist = siteList, bookingnights = bookingNights)    
+        return render_template("bookingform.html", customerlist = customerList, bookingdate=bookingDate, sitelist = siteList, bookingnights = bookingNights, occupancy = occupancy)    
 
 @app.route("/booking/add", methods=['POST'])
 def makebooking():
-    print(request.form)
-    pass
+    # get customer booking information from bookingform
+    siteId = request.form.get('site')
+    customerId = request.form.get('customer')
+    bookingDate = request.form.get('bookingdate')
+    firstNight = date.fromisoformat(bookingDate)
+    bookingNight = request.form.get('bookingnights')
+    occupancy = request.form.get('occupancy')
+    connection = getCursor() 
+    # Add all booking nights to database
+    for night in range (int(bookingNight)):
+        booking_date = firstNight + timedelta(days=night)
+        connection.execute("INSERT INTO bookings(site, customer, booking_date, occupancy) \
+                       VALUES(%s, %s, %s, %s);",(siteId, customerId, booking_date, occupancy,))
+    return render_template("bookingsuccess.html")
