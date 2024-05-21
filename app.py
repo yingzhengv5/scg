@@ -90,6 +90,27 @@ def search_customer():
     else:
         return render_template("searchcustomer.html")
     
+@app.route("/customer/add", methods=['GET','POST'])  
+def add_customer():
+    if request.method == "GET":
+        return render_template("add_or_edit_customer.html")
+    else:
+        # Get customer details
+        firstName = request.form.get('firstname')
+        familyName = request.form.get('familyname')
+        phoneNumber = request.form.get('phone')
+        emailAddress = request.form.get('email')
+        connection = getCursor()
+        # Add to database
+        connection.execute("INSERT INTO customers(firstname, familyname, email, phone) VALUES(%s,%s,%s,%s);",\
+                           (firstName, familyName, emailAddress, phoneNumber))
+        # return add successful information by redirect to anther route with "successful" in url  
+        return redirect(url_for("add_success"))
+    
+@app.route("/customer/add/successful")
+def add_success():
+    return render_template("addsuccess.html")
+    
 @app.route("/customer/edit", methods=['GET','POST'])
 def edit_customer():
     if request.method == 'GET':
