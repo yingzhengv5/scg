@@ -137,3 +137,33 @@ def edit_customer():
         connection.execute("UPDATE customers SET firstname=%s, familyname=%s, email=%s, phone=%s WHERE customer_id=%s;",\
                         (firstName, familyName, emailAddress, phoneNumber, customerID))
         return render_template("updatesuccess.html")
+
+@app.route("/summary_report", methods=['GET','POST'])
+def summary_report():
+    if request.method == 'GET':
+        # Show customer's names for user to choose
+        connection = getCursor()
+        connection.execute("SELECT * FROM customers;")
+        customerList = connection.fetchall()
+        return render_template("selectcustomer.html", customerlist = customerList)
+    else:
+        # Get all customer's id into a list
+        customerIDs = request.form.getlist('customer_id')
+        connection = getCursor()
+        # Get required information like name, nights, avg occupancy
+        sql = """ 
+        SELECT c.customer_id, c.firstname, c.familyname, COUNT(b.customer) AS nights, ROUND(AVG(b.occupancy),2) AS average
+        FROM customers c 
+        LEFT JOIN bookings b ON c.customer_id=b.customer
+        WHERE c.customer_id IN (%s) 
+        GROUP BY c.customer_id 
+        ORDER BY c.firstname
+        """
+        # Create a string of placeholders with the same quantity as customerIDs
+        placeholders = ", ".join(["%s"] * len(customerIDs))
+        sql = sql % placeholders
+        # Convert list to tuple so Mysql can execute it correctly
+        val = tuple(customerIDs,)
+        connection.execute(sql, val)
+        report_details = connection.fetchall()
+        return render_template("report.html", reports = report_details )    

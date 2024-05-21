@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Selwyn Campground - Booking Summary</h2>
+
+<!--Display selected customers report -->
+<table class="table table-defult table-hover">
+    <tr>
+        <th>Customer Name</th>
+        <th>Total booking nights</th>
+        <th>Average occupancy</th>
+    </tr>
+        {% for report in reports%}
+            <tr>
+                <td>{{ report[1] }} {{ report[2] }}</td>
+                <td>{{ report[3] }}</td>
+                <!--If no booking history, set occupancy to 0-->
+                <td>{{ report[4] if report[4] else 0}}</td>
+            </tr>
+        {% endfor %}
+</table>
+{% endblock %}

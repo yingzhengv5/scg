@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- code in here to display all customers' names-->
+<h2>Selwyn Campground - Booking Summary Report</h2>
+
+<form action="{{ url_for('summary_report') }}" method="POST" class="needs-validation" novalidate>
+    <label for="customer_id">Select the customer you'd like to view.</label><br>
+    <select name="customer_id" size="5" multiple required>
+        <option disabled >Hold Ctrl to select multiple customers</option>
+        {% for customer in customerlist %}
+        <option value="{{ customer[0] }} ">{{ customer[1] }} {{ customer[2] }}</option>
+        {% endfor %}
+    </select><br>
+        <div class="invalid-feedback">
+            Please select at least one customer
+        </div>
+    <input type="submit" value="Check Report">
+</form>
+
+
+{% endblock %}
