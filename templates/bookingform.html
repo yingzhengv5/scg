@@ -27,13 +27,14 @@
     <label for="site">Site to select</label><br>
     <!-- radio button loop -->
     {% for site in sitelist %}
-    <input type="radio" name="site" value="{{site[0]}}" required> {{site[0]}} - {{site[1]}} occupancy </input><br>
+    <input type="radio" id="{{site[0]}}" name="site" value="{{site[0]}}" required> 
+    <label for="{{site[0]}}">{{site[0]}} - {{site[1]}} occupancy </label><br>
     {% endfor %}
         <div class="invalid-feedback">
             Please choose a campsite
         </div>
     </div>
-    <br>
+
 <input type="submit"/>
 </form>
 

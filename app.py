@@ -157,7 +157,7 @@ def summary_report():
         LEFT JOIN bookings b ON c.customer_id=b.customer
         WHERE c.customer_id IN (%s) 
         GROUP BY c.customer_id 
-        ORDER BY c.firstname
+        ORDER BY COUNT(b.customer) DESC
         """
         # Create a string of placeholders with the same quantity as customerIDs
         placeholders = ", ".join(["%s"] * len(customerIDs))
