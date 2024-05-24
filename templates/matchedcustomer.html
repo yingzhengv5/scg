@@ -11,12 +11,11 @@
     </div>
     <!--Display customers in table-->
     <div class="row justify-content-center mb-3">
-        <div class="col-10 text-center">
+        <div class="col-12 text-center">
             <table class="table table-default table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th>First Name</th>
-                        <th>Family Name</th>
+                        <th>Name</th>
                         <th>Email Address</th>
                         <th>Phone Number</th>
                         <th></th>
@@ -24,8 +23,7 @@
                 </thead>
                 {% for customer in matched_customers %}
                 <tr>
-                    <td>{{ customer[1] }}</td>
-                    <td>{{ customer[2] }}</td>
+                    <td>{{ customer[1] }} {{ customer[2] }}</td>
                     <td>{{ customer[3] }}</td>
                     <td>{{ customer[4] }}</td>
                     <!--Create a button for edit so user can edit from this path as well-->
