@@ -1,91 +1,117 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!--Check if the request is for edit customer or add customer-->
-{% if customer %}
-<!--"customer" variable only exist in edit customer route-->
-<h2>Selwyn Campground - Edit Customer</h2>
-
-    <form action="{{ url_for('edit_customer', customer_id = customer[0]) }}" method="POST" class="needs-validation" novalidate>
-        <!--Display selected customer's default value and allow user to change--> 
+<div class="container">
+    <!--Check if matched_customers exist-->
+    <!--Check if the request is for edit customer or add customer-->
+    {% if customer %}
+    <!--"customer" variable only exist in edit customer route-->
+    <div class="row mt-5 mb-3 justify-content-center">
+        <div class="col">
+            <h2 class="fs-3 fw-normal text-center text-dark">Selwyn Campground - Edit Customer</h2>
+        </div>
+    </div>
+    <form action="{{ url_for('edit_customer', customer_id = customer[0]) }}" method="POST" class="needs-validation"
+        novalidate>
+        <!--Display selected customer's default value and allow user to change-->
         <input type="hidden" id="customer_id" name="customer_id" value="{{ customer[0] }}">
-
-        <div class="form-control">
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname" pattern="[A-Za-z]*" value="{{ customer[1] }}" required>
-            <div class="invalid-feedback">
-                Please enter letters (a-z,A-Z) only
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-4">
+                <label class="form-label" for="firstname">First Name:</label>
+                <input class="form-control" type="text" id="firstname" name="firstname" pattern="[A-Za-z]*"
+                    value="{{ customer[1] }}" required>
+                <div class="invalid-feedback">
+                    Please enter letters (a-z,A-Z) only
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="familyname">Family Name:</label>
+                <input class="form-control" type="text" id="familyname" name="familyname" pattern="[A-Za-z]*"
+                    value="{{ customer[2] }}" required>
+                <div class="invalid-feedback">
+                    Please enter letters (a-z,A-Z) only
+                </div>
             </div>
         </div>
 
-        <div class="form-control">
-        <label for="familyname">Family Name:</label>
-        <input type="text" id="familyname" name="familyname" pattern="[A-Za-z]*" value="{{ customer[2] }}" required>
-            <div class="invalid-feedback">
-                Please enter letters (a-z,A-Z) only
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-4">
+                <label class="form-label" for="email">Email:</label>
+                <input class="form-control" type="email" id="email" name="email" value="{{ customer[3] }}" required>
+                <div class="invalid-feedback">
+                    Please enter a valid email address
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="phone">Phone:</label>
+                <input class="form-control" type="tel" id="phone" name="phone" value="{{ customer[4] }}"
+                    pattern="[0-9]{7,12}" placeholder="7-12 digits" required>
+                <div class="invalid-feedback">
+                    Please enter 7-12 digits only
+                </div>
             </div>
         </div>
-
-        <div class="form-control">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="{{ customer[3] }}"required>
-            <div class="invalid-feedback">
-                Please enter a valid email address
-            </div>
+        <div class="d-grid gap-2 col-3 mx-auto">
+            <input class="btn btn-success" type="submit" value="Update">
         </div>
-
-        <div class="form-control">
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone"  value="{{ customer[4] }}" pattern="[0-9]{7,12}" placeholder="7-12 digits" required>
-            <div class="invalid-feedback">
-                Please enter 7-12 digits only
-            </div>
-        </div>
-
-        <input type="submit" value="Update">
     </form>
+</div>
 
-<!--Run code below if "customer" variable doesn't exist-->
-{% else %}
-<h2>Selwyn Campground - Add Customer</h2>
-
+<!--Run code below to add customer if "customer" variable doesn't exist-->
+<div class="container">
+    {% else %}
+    <div class="row mt-5 mb-3 justify-content-center">
+        <div class="col">
+            <h2 class="fs-3 fw-normal text-center text-dark">Selwyn Campground - Add Customer</h2>
+        </div>
+    </div>
     <form action="/customer/add" method="POST" class="needs-validation" novalidate>
         <!--Prompt user input with reasonable validation message-->
-        <div class="form-control">
-        <label for="firstname">First Name:</label>
-        <input type="text" id="firstname" name="firstname" pattern="[A-Za-z]*" required>
-            <div class="invalid-feedback">
-                Please enter letters (a-z,A-Z) only
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-4">
+                <label class="form-label" for="firstname">First Name:</label>
+                <input class="form-control" type="text" id="firstname" name="firstname" pattern="[A-Za-z]*" required>
+                <div class="invalid-feedback">
+                    Please enter letters (a-z,A-Z) only
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="familyname">Family Name:</label>
+                <input class="form-control" type="text" id="familyname" name="familyname" pattern="[A-Za-z]*" required>
+                <div class="invalid-feedback">
+                    Please enter letters (a-z,A-Z) only
+                </div>
             </div>
         </div>
 
-        <div class="form-control">
-        <label for="familytname">Family Name:</label>
-        <input type="text" id="familytname" name="familyname" pattern="[A-Za-z]*" required>
-            <div class="invalid-feedback">
-                Please enter letters (a-z,A-Z) only
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-4">
+                <label class="form-label" for="email">Email:</label>
+                <input class="form-control" type="email" id="email" name="email" required>
+                <div class="invalid-feedback">
+                    Please enter a valid email address
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label" for="phone">Phone:</label>
+                <input class="form-control" type="tel" id="phone" name="phone" pattern="[0-9]{7,12}"
+                    placeholder="7-12 digits" required>
+                <div class="invalid-feedback">
+                    Please enter 7-12 digits only
+                </div>
             </div>
         </div>
 
-        <div class="form-control">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-            <div class="invalid-feedback">
-                Please enter a valid email address
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-4">
+                <input class="btn btn-success" type="submit" value="Submit">
+            </div>
+            <div class="col-md-4">
+                <input class="btn btn-secondary" type="reset" value="Reset">
             </div>
         </div>
-
-        <div class="form-control">
-        <label for="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" pattern="[0-9]{7,12}" placeholder="7-12 digits" required>
-            <div class="invalid-feedback">
-                Please enter 7-12 digits only
-            </div>
-        </div>
-
-        <input type="submit" value="Submit">
-        <input type="reset" value="Reset">
     </form>
-{% endif %}
+    {% endif %}
 
-{% endblock %}
+    {% endblock %}
+</div>

@@ -1,18 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- code in here to display a booking page-->
-<h2>Selwyn Campground - Make a booking</h2>
-<h3>Choose the date you'd like the booking to start on.</h3>
-
-<form action="{{url_for('booking')}}" method="POST">
-<label for="bookingdate">Choose start night of booking</label>
-<input type="date" min="{{currentdate}}" value="{{currentdate}}" name="bookingdate"/>
-<label for="bookingnights">Number of nights</label>
-<input type="number" name="bookingnights" min="1" max="5" step="1" value="1"/>
-<label for="occupancy">Number of people</label>
-<input type="number" name="occupancy" min="1" max="8" step="1" value="1"/>
-
-<input type="submit"/>
-</form>
-
+<div class="container">
+    <div class="row mt-5 mb-3 justify-content-center">
+        <div class="col">
+            <h2 class="fs-3 fw-normal text-center text-dark">Selwyn Campground - Make a booking</h2>
+        </div>
+    </div>
+    <form action="{{url_for('booking')}}" method="POST">
+        <div class="row justify-content-center p-0 mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="bookingdate">Choose start night of booking</label>
+                <input class="form-control" type="date" min="{{currentdate}}" value="{{currentdate}}"
+                    name="bookingdate" />
+            </div>
+        </div>
+        <div class="row justify-content-center p-0 mb-4">
+            <div class="col-md-3">
+                <label class="form-label" for="bookingnights">Number of nights<span class="fs-6 fw-light"> (Max
+                        5)</span></label>
+                <input class="form-control" type="number" name="bookingnights" min="1" max="5" step="1" value="1" />
+            </div>
+            <div class="col-md-3">
+                <label class="form-label" for="occupancy">Number of people<span class="fs-6 fw-light"> (Max
+                        8)</span></label>
+                <input class="form-control" type="number" name="occupancy" min="1" max="8" step="1" value="1" />
+            </div>
+        </div>
+        <div class="d-grid gap-2 col-3 mx-auto">
+            <input class="btn btn-success" type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
 {% endblock %}

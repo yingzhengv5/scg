@@ -1,12 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- code in here to display the date-->
-<h2>Selwyn Campground - Who is camping?</h2>
-<h3>Choose the date you'd like view who is camping.</h3>
-
-<form action="{{ url_for('campers') }}" method="POST">
-<input type="date" value="{{currentdate}}" name="campdate"/>
-<input type="submit"/>
-</form>
-
+<div class="container">
+    <div class="row mt-5 mb-3 justify-content-center">
+        <div class="col">
+            <h2 class="fs-3 fw-normal text-center">Choose the date you'd like view who is camping</h2>
+        </div>
+    </div>
+    <form action="{{ url_for('campers') }}" method="POST">
+        <div class="row justify-content-center mb-3 g-2">
+            <div class="col-3">
+                <input class="form-control" type="date" value="{{currentdate}}" name="campdate" />
+            </div>
+            <div class="col-2">
+                <input class="btn btn-success" type="submit" />
+            </div>
+        </div>
+    </form>
+</div>
+</div>
 {% endblock %}

@@ -1,31 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
 
-<!--Check if matched_customers exist-->
-{% if matched_customers %}
-    <h3>Matched Customers</h3>
+<div class="container">
+    <!--Check if matched_customers exist-->
+    {% if matched_customers %}
+    <div class="row mt-5 mb-3 justify-content-center">
+        <div class="col">
+            <h2 class="fs-3 fw-normal text-center text-dark">Selwyn Campground - Matched Customers</h2>
+        </div>
+    </div>
     <!--Display customers in table-->
-    <table class="table table-defult table-hover">
-        <tr>
-            <th>First Name</th>
-            <th>Family Name</th>
-            <th>Email Address</th>
-            <th>Phone Number</th>
-            <th></th>
-        </tr>
-        {% for customer in matched_customers %}
-        <tr>
-            <td>{{ customer[1] }}</td>
-            <td>{{ customer[2] }}</td>
-            <td>{{ customer[3] }}</td>
-            <td>{{ customer[4] }}</td> 
-            <!--Create a button for edit so user can edit from this path as well-->
-            <td><button><a href="{{ url_for('edit_customer', customer_id = customer[0]) }}">Edit</a></button></td>        
-        </tr>
-        {% endfor %}
-    </table>
-{% else %}
-    <p>Customer not found</p>
-{% endif %}
+    <div class="row justify-content-center mb-3">
+        <div class="col-10 text-center">
+            <table class="table table-default table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Family Name</th>
+                        <th>Email Address</th>
+                        <th>Phone Number</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                {% for customer in matched_customers %}
+                <tr>
+                    <td>{{ customer[1] }}</td>
+                    <td>{{ customer[2] }}</td>
+                    <td>{{ customer[3] }}</td>
+                    <td>{{ customer[4] }}</td>
+                    <!--Create a button for edit so user can edit from this path as well-->
+                    <td>
+                        <button class="btn btn-outline-info" type="button">
+                            <a href="{{ url_for('edit_customer', customer_id = customer[0]) }}">Edit</a>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% else %}
+    <p class="row justify-content-center fs-6 fw-normal mt-5">Customer not found</p>
+    {% endif %}
 
-{% endblock %}
+    {% endblock %}
+</div>

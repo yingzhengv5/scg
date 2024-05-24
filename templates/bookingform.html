@@ -1,45 +1,58 @@
 {% extends "base.html" %}
 {% block content %}
 <!-- code in here to display a list of bookings-->
-<h2>Selwyn Campground - Make a booking</h2>
-
-<!--Check if there are available sites for the chosen date-->
-{% if sitelist %}
+<div class="container">
+    <div class="row mt-5 mb-3 justify-content-center">
+        <div class="col">
+            <h2 class="fs-3 fw-normal text-center text-dark">Selwyn Campground - Make a booking</h2>
+        </div>
+    </div>
+    <!--Check if there are available sites for the chosen date-->
+    {% if sitelist %}
     <form action="/booking/add" method="POST" class="needs-validation" novalidate>
-    <label for="bookingdate">Start Date to be booked</label>
-    <input type="date" enabled="false" name="bookingdate" value="{{bookingdate}}" readonly/>
-    <br>
-    <input type="hidden" name="bookingnights" value="{{bookingnights}}"/>
-    <input type="hidden" name="occupancy" value="{{occupancy}}"/>
-    <div>
-    <label for="customer">Customer to book for</label>
-    <select name="customer" required>
-        {% for customer in customerlist %} 
-        <option value="{{customer[0]}}">{{customer[1]}} {{customer[2]}}</option>
-        {% endfor %}
-    </select><br>
-        <div class="invalid-feedback">
-            Please choose a customer 
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-6">
+                <label class="form-label" for="bookingdate">Start Date to be booked</label>
+                <input class="form-control" type="date" enabled="false" name="bookingdate" value="{{bookingdate}}"
+                    readonly>
+            </div>
         </div>
-    </div>
-
-    <div>
-    <label for="site">Site to select</label><br>
-    <!-- radio button loop -->
-    {% for site in sitelist %}
-    <input type="radio" id="{{site[0]}}" name="site" value="{{site[0]}}" required> 
-    <label for="{{site[0]}}">{{site[0]}} - {{site[1]}} occupancy </label><br>
-    {% endfor %}
-        <div class="invalid-feedback">
-            Please choose a campsite
+        <input type="hidden" name="bookingnights" value="{{bookingnights}}" />
+        <input type="hidden" name="occupancy" value="{{occupancy}}" />
+        <div class="row justify-content-center mb-2">
+            <div class="col-md-6">
+                <label class="form-label" for="customer">Customer to book for</label>
+                <select class="form-select" name="customer" required>
+                    {% for customer in customerlist %}
+                    <option value="{{customer[0]}}">{{customer[1]}} {{customer[2]}}</option>
+                    {% endfor %}
+                </select>
+                <div class="invalid-feedback">
+                    Please choose a customer
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="row d-flex justify-content-center p-0 mb-3">
+            <div class="col-6 mb-3">
+                <label class="mb-1" for="site">Site to select</label><br>
+                <!-- radio button loop -->
+                {% for site in sitelist %}
+                <input class="form-check-input" type="radio" id="{{site[0]}}" name="site" value="{{site[0]}}" required>
+                <label class="form-check-label" for="{{site[0]}}">{{site[0]}} - {{site[1]}} occupancy </label><br>
+                {% endfor %}
+                <div class="invalid-feedback">
+                    Please choose a campsite
+                </div>
+                <input class="btn btn-success mt-3" type="submit" />
+            </div>
+        </div>
+    </form>
 
-<input type="submit"/>
-</form>
+    {% else %}
+    <p class="row justify-content-center fs-6 fw-normal">No available sites for the selected date, please check another
+        date.</p>
 
-{% else %}
-<p>No available sites for the selected date, please check another date.</p>
-{% endif %}
+    {% endif %}
 
-{% endblock %}
+    {% endblock %}
+</div>
