@@ -36,6 +36,7 @@ def campers():
     else:
         campDate = request.form.get('campdate')
         connection = getCursor()
+        # Get customer's booking information for the selected date
         connection.execute("SELECT * FROM bookings join sites on site = site_id inner join customers on customer = customer_id where booking_date= %s;",(campDate,))
         camperList = connection.fetchall()
         return render_template("camperlist.html", camperlist = camperList, campdate =campDate)
@@ -54,6 +55,7 @@ def booking():
         connection = getCursor()
         connection.execute("SELECT * FROM customers;")
         customerList = connection.fetchall()
+        # Check occupancy and date then display available sites
         connection.execute("select * from sites where occupancy >= %s AND site_id not in (select site from bookings where booking_date between %s AND %s);",(occupancy,firstNight,lastNight))
         siteList = connection.fetchall()
         return render_template("bookingform.html", customerlist = customerList, bookingdate=bookingDate, sitelist = siteList, bookingnights = bookingNights, occupancy = occupancy)    
@@ -122,7 +124,7 @@ def edit_customer():
         return render_template("add_or_edit_customer.html", customer = customer_details)
         
     else: 
-        # Update customer information
+        # Update customer information in database
         customerID = request.form.get('customer_id')
         firstName = request.form.get('firstname')
         familyName = request.form.get('familyname')
@@ -146,6 +148,8 @@ def summary_report():
         customerIDs = request.form.getlist('customer_id')
         connection = getCursor()
         # Get required information like name, nights, avg occupancy
+        # The number of times 'customer' appears in the booking table represents the total number of nights booked
+        # Round two decimals for average occupancy
         sql = """ 
         SELECT c.customer_id, c.firstname, c.familyname, COUNT(b.customer) AS nights, ROUND(AVG(b.occupancy),2) AS average
         FROM customers c 
@@ -154,8 +158,9 @@ def summary_report():
         GROUP BY c.customer_id 
         ORDER BY COUNT(b.customer) DESC
         """
-        # Create a string of placeholders with the same quantity as customerIDs
+        # Create a string of placeholders "%" with the same quantity as customerIDs
         placeholders = ", ".join(["%s"] * len(customerIDs))
+        # Use placeholders variable to replace the "%"" in sql
         sql = sql % placeholders
         # Convert list to tuple so Mysql can execute it correctly
         val = tuple(customerIDs,)
