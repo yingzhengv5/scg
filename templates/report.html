@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <!--Display selected customers report -->
+    <!--Display selected customers' report -->
     <div class="row justify-content-center mb-3">
         <div class="col-10 text-center">
             <table class="table table-default table-hover table-bordered">
@@ -22,6 +22,7 @@
                 {% for report in reports%}
                 <tr>
                     <td>{{ report[1] }} {{ report[2] }}</td>
+                    <!-- The number of times 'customer' appears in the booking table represents the total number of nights booked -->
                     <td>{{ report[3] }}</td>
                     <!--If no booking history, set occupancy to 0-->
                     <td>{{ report[4] if report[4] else 0}}</td>
@@ -30,5 +31,5 @@
             </table>
         </div>
     </div>
-
-    {% endblock %}
+</div>
+{% endblock %}

@@ -24,7 +24,7 @@
                             <th>Occupancy</th>
                         </tr>
                     </thead>
-                    <!-- Insert code to loop over the list of campers and display them -->
+                    <!-- Display site, name and occupancy by index -->
                     {% for campers in camperlist %}
                     <tr>
                         <td>{{ campers[1] }}</td>
@@ -39,6 +39,5 @@
     {% else %}
     <p class="row justify-content-center fs-6 fw-normal">There is no booking for the selected date</p>
     {% endif %}
-
-    {% endblock %}
 </div>
+{% endblock %}

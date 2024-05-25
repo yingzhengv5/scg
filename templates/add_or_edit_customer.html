@@ -4,8 +4,8 @@
 <div class="container">
     <!--Check if matched_customers exist-->
     <!--Check if the request is for edit customer or add customer-->
-    {% if customer %}
     <!--"customer" variable only exist in edit customer route-->
+    {% if customer %}
     <div class="row mt-5 mb-3 justify-content-center">
         <div class="col">
             <h2 class="fs-3 fw-normal text-center text-dark">Selwyn Campground - Edit Customer</h2>
@@ -18,6 +18,7 @@
         <div class="row justify-content-center mb-3">
             <div class="col-md-4">
                 <label class="form-label" for="firstname">First Name:</label>
+                <!-- Only allow letters -->
                 <input class="form-control" type="text" id="firstname" name="firstname" pattern="[A-Za-z]*"
                     value="{{ customer[1] }}" required>
                 <div class="invalid-feedback">
@@ -26,6 +27,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="familyname">Family Name:</label>
+                <!-- Only allow letters -->
                 <input class="form-control" type="text" id="familyname" name="familyname" pattern="[A-Za-z]*"
                     value="{{ customer[2] }}" required>
                 <div class="invalid-feedback">
@@ -45,6 +47,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="phone">Phone:</label>
+                <!-- Only allow numbers -->
                 <input class="form-control" type="tel" id="phone" name="phone" value="{{ customer[4] }}"
                     pattern="[0-9]{7,12}" placeholder="7-12 digits" required>
                 <div class="invalid-feedback">
@@ -58,7 +61,8 @@
     </form>
 </div>
 
-<!--Run code below to add customer if "customer" variable doesn't exist-->
+<!-- Run code below to add customer if "customer" variable doesn't exist -->
+<!-- Add customer  -->
 <div class="container">
     {% else %}
     <div class="row mt-5 mb-3 justify-content-center">
@@ -71,6 +75,7 @@
         <div class="row justify-content-center mb-3">
             <div class="col-md-4">
                 <label class="form-label" for="firstname">First Name:</label>
+                <!-- Only allow letters -->
                 <input class="form-control" type="text" id="firstname" name="firstname" pattern="[A-Za-z]*" required>
                 <div class="invalid-feedback">
                     Please enter letters (a-z,A-Z) only
@@ -78,6 +83,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="familyname">Family Name:</label>
+                <!-- Only allow letters -->
                 <input class="form-control" type="text" id="familyname" name="familyname" pattern="[A-Za-z]*" required>
                 <div class="invalid-feedback">
                     Please enter letters (a-z,A-Z) only
@@ -96,6 +102,7 @@
             </div>
             <div class="col-md-4">
                 <label class="form-label" for="phone">Phone:</label>
+                <!-- Only allow numbers -->
                 <input class="form-control" type="tel" id="phone" name="phone" pattern="[0-9]{7,12}"
                     placeholder="7-12 digits" required>
                 <div class="invalid-feedback">
@@ -114,6 +121,5 @@
         </div>
     </form>
     {% endif %}
-
-    {% endblock %}
 </div>
+{% endblock %}

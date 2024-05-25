@@ -14,6 +14,7 @@
             <div class="col-8 mb-1">
                 <label class="form-label fs-5" for="customer_id">Select the customer you'd like to
                     view</label><br>
+                <!-- Prompt user to select one or multiple customers to view -->
                 <select class="form-select" name="customer_id" size="10" multiple required>
                     <option class="sticky-top bg-light" disabled>Hold Ctrl to select multiple customers</option>
                     {% for customer in customerlist %}

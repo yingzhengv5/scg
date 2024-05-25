@@ -77,7 +77,7 @@ def makebooking():
 
 @app.route("/customer/search")
 def search_customer():
-    # Check if a search parameter is provided in url (when user is redirected to here)
+    # Set a variable to get user's input from url
     searchCustomer = request.args.get('search_customer')
     if searchCustomer:
         connection = getCursor()
@@ -113,6 +113,7 @@ def add_success():
     
 @app.route("/customer/edit", methods=['GET','POST'])
 def edit_customer():
+    # Get customerID from matched customers
     if request.method == 'GET':
         customerID = request.args.get('customer_id')
         connection = getCursor()
