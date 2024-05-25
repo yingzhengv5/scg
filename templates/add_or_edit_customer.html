@@ -37,7 +37,8 @@
         <div class="row justify-content-center mb-3">
             <div class="col-md-4">
                 <label class="form-label" for="email">Email:</label>
-                <input class="form-control" type="email" id="email" name="email" value="{{ customer[3] }}" required>
+                <input class="form-control" type="email" id="email" name="email" value="{{ customer[3] }}"
+                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                 <div class="invalid-feedback">
                     Please enter a valid email address
                 </div>
@@ -87,7 +88,8 @@
         <div class="row justify-content-center mb-3">
             <div class="col-md-4">
                 <label class="form-label" for="email">Email:</label>
-                <input class="form-control" type="email" id="email" name="email" required>
+                <input class="form-control" type="email" id="email" name="email"
+                    pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" required>
                 <div class="invalid-feedback">
                     Please enter a valid email address
                 </div>

@@ -114,19 +114,13 @@ def add_success():
 @app.route("/customer/edit", methods=['GET','POST'])
 def edit_customer():
     if request.method == 'GET':
-        # For user access from search customer page directly, customerID exist
         customerID = request.args.get('customer_id')
-        if customerID:
-        # Retrieve customer information from database  
-            connection = getCursor()
-            connection.execute("SELECT * FROM customers WHERE customer_id=%s;", (customerID,))
-            customer_details = connection.fetchone()
-            return render_template("add_or_edit_customer.html", customer = customer_details)
-        # If user accessed the edit page directly, redirect to search customer page
-        else:
-            return redirect(url_for('search_customer'))
+        connection = getCursor()
+        connection.execute("SELECT * FROM customers WHERE customer_id=%s;", (customerID,))
+        customer_details = connection.fetchone()
+        return render_template("add_or_edit_customer.html", customer = customer_details)
         
-    elif request.method == 'POST':
+    else: 
         # Update customer information
         customerID = request.form.get('customer_id')
         firstName = request.form.get('firstname')
