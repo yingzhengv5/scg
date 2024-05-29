@@ -78,9 +78,7 @@ Data type : datetime
 
 5.
 • Add a login/register page with fields for a username (which can be the email address) and password for authentication. Create a separate 'users' table to store user credentials, including a securely hashed password.
-<br>
 • In the 'bookings' table, add a 'payment_status' column to track the payment status of the booking, such as "paid online" or "pay upon arrival." This will help in effectively managing the payment statuses of bookings.
-
 <br>
 
 ## References: 

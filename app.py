@@ -75,10 +75,10 @@ def makebooking():
         booking_date = firstNight + timedelta(days=night)
         connection.execute("INSERT INTO bookings(site, customer, booking_date, occupancy) \
                        VALUES(%s, %s, %s, %s);",(siteId, customerId, booking_date, occupancy,))
-    return redirect(url_for("booking_added"))
+    return redirect(url_for("booking_success"))
 
 @app.route("/booking/add/successful")
-def booking_added():
+def booking_success():
     return render_template("bookingsuccess.html")
 
 @app.route("/customer/search")
