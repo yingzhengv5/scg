@@ -26,3 +26,67 @@
 • For table display, I chose table-hover and table-bordered to make it stand out and used <thead> to fix the first row of the table.
 
 • For multiple select, I put a disabled and sticky-top option “Hold Ctrl to select multiple customers” to indicate to the user that they can select multiple customers.
+<br>
+<br>
+## <center>Project Report – Part 2: Database questions</center>
+
+1.
+
+```mysql
+CREATE TABLE IF NOT EXISTS `customers` (
+`customer_id` INT NOT NULL AUTO_INCREMENT,
+`firstname` VARCHAR(45) NULL,
+`familyname` VARCHAR(60) NOT NULL,
+`email` VARCHAR(255) NULL,
+`phone` VARCHAR(12) NULL,
+PRIMARY KEY (`customer_id`));
+```
+
+2.
+
+```mysql
+CONSTRAINT `customer`
+ FOREIGN KEY (`customer`)
+ REFERENCES `scg`.`customers` (`customer_id`)
+ ON DELETE NO ACTION
+ ON UPDATE NO ACTION;
+```
+
+3.
+
+```mysql
+INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('P1', '5');
+INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('P4', '2');
+INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('P2', '3');
+INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('P5', '8');
+INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('P3', '2');
+INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('U1', '6');
+INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('U2', '2');
+INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('U3', '4');
+INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('U4', '4');
+INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('U5', '2');
+```
+
+4.
+
+```
+Table: bookings 
+New column: order_date 
+Data type : datetime 
+```
+
+5.
+
+```
+• Add a login/register page with fields for a username (which can be the email address) and password for authentication. Create a separate 'users' table to store user credentials, including a securely hashed password.
+
+• In the 'bookings' table, add a 'payment_status' column to track the payment status of the booking, such as "paid online" or "pay upon arrival." This will help in effectively managing the payment statuses of bookings.
+```
+
+<br>
+
+## <center>References: </center>
+
+Unsplash. https://unsplash.com/photos/woman-and-a-dog-inside-outdoor-tent-near-body-of-water-eDgUyGu93Yw
+
+Bootstrap. https://icons.getbootstrap.com/icons/house-heart-fill/
