@@ -1,4 +1,4 @@
-## <center>Project Report – Part 1: Design Decisions</center>
+## Project Report – Part 1: Design Decisions
 
 ### **Functional Parts:**
 
@@ -28,7 +28,8 @@
 • For multiple select, I put a disabled and sticky-top option “Hold Ctrl to select multiple customers” to indicate to the user that they can select multiple customers.
 <br>
 <br>
-## <center>Project Report – Part 2: Database questions</center>
+
+## Project Report – Part 2: Database questions
 
 1.
 
@@ -76,16 +77,13 @@ Data type : datetime
 ```
 
 5.
-
-```
 • Add a login/register page with fields for a username (which can be the email address) and password for authentication. Create a separate 'users' table to store user credentials, including a securely hashed password.
-
+<br>
 • In the 'bookings' table, add a 'payment_status' column to track the payment status of the booking, such as "paid online" or "pay upon arrival." This will help in effectively managing the payment statuses of bookings.
-```
 
 <br>
 
-## <center>References: </center>
+## References: 
 
 Unsplash. https://unsplash.com/photos/woman-and-a-dog-inside-outdoor-tent-near-body-of-water-eDgUyGu93Yw
 

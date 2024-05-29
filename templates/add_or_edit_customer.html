@@ -20,7 +20,7 @@
                 <label class="form-label" for="firstname">First Name:</label>
                 <!-- Only allow letters -->
                 <input class="form-control" type="text" id="firstname" name="firstname" pattern="[A-Za-z]*"
-                    value="{{ customer[1] }}" required>
+                    maxlength="45" value="{{ customer[1] }}" required>
                 <div class="invalid-feedback">
                     Please enter letters (a-z,A-Z) only
                 </div>
@@ -29,7 +29,7 @@
                 <label class="form-label" for="familyname">Family Name:</label>
                 <!-- Only allow letters -->
                 <input class="form-control" type="text" id="familyname" name="familyname" pattern="[A-Za-z]*"
-                    value="{{ customer[2] }}" required>
+                    maxlength="60" value="{{ customer[2] }}" required>
                 <div class="invalid-feedback">
                     Please enter letters (a-z,A-Z) only
                 </div>
@@ -76,7 +76,8 @@
             <div class="col-md-4">
                 <label class="form-label" for="firstname">First Name:</label>
                 <!-- Only allow letters -->
-                <input class="form-control" type="text" id="firstname" name="firstname" pattern="[A-Za-z]*" required>
+                <input class="form-control" type="text" id="firstname" name="firstname" pattern="[A-Za-z]*"
+                    maxlength="45" required>
                 <div class="invalid-feedback">
                     Please enter letters (a-z,A-Z) only
                 </div>
@@ -84,7 +85,8 @@
             <div class="col-md-4">
                 <label class="form-label" for="familyname">Family Name:</label>
                 <!-- Only allow letters -->
-                <input class="form-control" type="text" id="familyname" name="familyname" pattern="[A-Za-z]*" required>
+                <input class="form-control" type="text" id="familyname" name="familyname" pattern="[A-Za-z]*"
+                    maxlength="60" required>
                 <div class="invalid-feedback">
                     Please enter letters (a-z,A-Z) only
                 </div>

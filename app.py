@@ -39,7 +39,7 @@ def campers():
         # Get customer's booking information for the selected date
         connection.execute("SELECT * FROM bookings join sites on site = site_id inner join customers on customer = customer_id where booking_date= %s;",(campDate,))
         camperList = connection.fetchall()
-        return render_template("camperlist.html", camperlist = camperList, campdate =campDate)
+        return render_template("camperlist.html", camperlist = camperList, campdate = campDate)
 
 @app.route("/booking", methods=['GET','POST'])
 def booking():
@@ -58,7 +58,7 @@ def booking():
         # Check occupancy and date then display available sites
         connection.execute("select * from sites where occupancy >= %s AND site_id not in (select site from bookings where booking_date between %s AND %s);",(occupancy,firstNight,lastNight))
         siteList = connection.fetchall()
-        return render_template("bookingform.html", customerlist = customerList, bookingdate=bookingDate, sitelist = siteList, bookingnights = bookingNights, occupancy = occupancy)    
+        return render_template("bookingform.html", customerlist = customerList, bookingdate = bookingDate, sitelist = siteList, bookingnights = bookingNights, occupancy = occupancy)    
 
 @app.route("/booking/add", methods=['POST'])
 def makebooking():
@@ -75,6 +75,10 @@ def makebooking():
         booking_date = firstNight + timedelta(days=night)
         connection.execute("INSERT INTO bookings(site, customer, booking_date, occupancy) \
                        VALUES(%s, %s, %s, %s);",(siteId, customerId, booking_date, occupancy,))
+    return redirect(url_for("booking_added"))
+
+@app.route("/booking/add/successful")
+def booking_added():
     return render_template("bookingsuccess.html")
 
 @app.route("/customer/search")
@@ -106,12 +110,12 @@ def add_customer():
         # Add to database
         connection.execute("INSERT INTO customers(firstname, familyname, email, phone) VALUES(%s,%s,%s,%s);",\
                            (firstName, familyName, emailAddress, phoneNumber))
-        # return add successful information by redirect to anther route with "successful" in url  
-        return redirect(url_for("add_success"))
-    
-@app.route("/customer/add/successful")
-def add_success():
-    return render_template("addsuccess.html")
+        # Get the new customer's information and display it 
+        connection.execute("SELECT * FROM customers WHERE firstname=%s AND familyname=%s AND email=%s AND phone=%s;",\
+                           (firstName, familyName, emailAddress, phoneNumber))
+        newCustomer = connection.fetchone()
+        # return add successful information 
+        return render_template("addsuccess.html", new_customer=newCustomer)
     
 @app.route("/customer/edit", methods=['GET','POST'])
 def edit_customer():
@@ -133,7 +137,11 @@ def edit_customer():
         connection = getCursor()
         connection.execute("UPDATE customers SET firstname=%s, familyname=%s, email=%s, phone=%s WHERE customer_id=%s;",\
                         (firstName, familyName, emailAddress, phoneNumber, customerID))
-        return render_template("updatesuccess.html")
+        # Get the customer's updated information and display it 
+        connection.execute("SELECT * FROM customers WHERE customer_id=%s;",(customerID,))
+        updateCustomer = connection.fetchone()
+        # return add successful information 
+        return render_template("updatesuccess.html", update_customer=updateCustomer )
 
 @app.route("/summary_report", methods=['GET','POST'])
 def summary_report():

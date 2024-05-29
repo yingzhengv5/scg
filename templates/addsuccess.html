@@ -2,7 +2,26 @@
 {% block content %}
 
 <div class="container text-center mt-5">
-    <p class="fs-3 fw-normal">Thank you, customer information has been successfully entered.</p>
+    <p class="fs-3 fw-normal mb-4">Thank you, customer information has been successfully entered.</p>
+    <div class="row justify-content-center mb-3">
+        <div class="col-8 text-center">
+            <table class="table table-default table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email Address</th>
+                        <th>Phone Number</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <!-- Display new customer's information -->
+                    <td>{{ new_customer[1] }} {{ new_customer[2] }}</td>
+                    <td>{{ new_customer[3] }}</td>
+                    <td>{{ new_customer[4] }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
