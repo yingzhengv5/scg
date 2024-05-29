@@ -1,1 +1,28 @@
-# scg
+## <center>Project Report – Part 1: Design Decisions</center>
+
+### **Functional Parts:**
+
+• For camplist.html, two scenarios need to be considered: whether the selected date has bookings or doesn't have any bookings. Therefore, an If statement should be used for display, and only necessary information like name, campsite, and occupancy should be displayed.
+
+• Make a booking, all nights of the booking should be added to the database, so a loop from the first night until the last night is necessary. On the bookingform.html page, I set the date to read-only to avoid users changing the date on this page while the available sites do not update accordingly. They can go back to select another date to ensure the displayed sites are always available. A "booking successful" message to confirm the booking is displayed after submitting.
+
+• Search customer, as this part only displays information, the default GET method is suitable. Get the search data to compare with the database using %LIKE%, so with partial text matched, the appropriate customers can be displayed. When I finished this display, I noticed that editing a customer would require the customer to be displayed first, so it’s an efficient way to grab the customer’s ID when displaying them and add an edit button on the same page. The edit button will direct to a new route to handle the data afterward.
+
+• For adding a customer, validate each input, such as allowing only letters for the name, only numbers for the phone, and ensuring the email has an @ symbol. I used some regex to set a special pattern to achieve the validation. An "add successful" message should be displayed after submission.
+
+• For editing a customer, I noticed that it would duplicate the ‘Search Customer’ display. So, I integrated both routes to make it “Search/Edit Customer.” In addition, editing a customer can share the same page with adding a customer as the required input information is the same. I used an If statement to do this.
+
+• For the report, I decided to make a multiple select in case the user wants to see multiple reports at once. I used a left join for display because all the selected customers should be displayed even if they don’t have any bookings. In SQL booking table, each row is a booking for one night. The number of times 'customer' appears in the booking table represents the total number of nights booked. The report is ordered by booking nights descending, so all the customers who had booking history can be displayed at the top.
+
+
+### **Bootstrap Layout:**
+
+• Even though this is a simple web page, the home button is still essential to make the web look more professional, so the navbar-brand with the text “Selwyn Campground” can lead the user to the home page. A welcome picture is displayed on the home page only. The navbar is sticky to the top, so it stays displayed on the page when the user scrolls down.
+
+• All pages use justify-content-center, and all titles use the same top margin and font size. This can make the user interface consistent throughout.
+
+• Careful use of form-check ensures the invalid-feedback class is on the same grid with the input that needs validation. Also, form-control and form-label make the form format look nicer.
+
+• For table display, I chose table-hover and table-bordered to make it stand out and used <thead> to fix the first row of the table.
+
+• For multiple select, I put a disabled and sticky-top option “Hold Ctrl to select multiple customers” to indicate to the user that they can select multiple customers.
