@@ -13,7 +13,7 @@
         <!--Display customers in table-->
         <div class="row justify-content-center mb-3">
             <div class="col-12 text-center">
-                <table class="table table-default table-hover table-bordered">
+                <table class="table table-default table-hover table-bordered mt-3">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -40,7 +40,10 @@
         </div>
     </form>
     {% else %}
-    <p class="row justify-content-center fs-6 fw-normal mt-5">Customer not found</p>
+    <div class="row justify-content-center">
+        <p class="fs-6 fw-normal mt-5 text-center">Customer not found</p>
+        <a href="{{ url_for('search_customer')}}" class="btn btn-outline-primary col-auto mt-2">Go Back</a>
+    </div>
     {% endif %}
 </div>
 {% endblock %}

@@ -1,8 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container text-center mt-5">
-    <p class="fs-4 fw-normal">Booking Successful !</p>
+<div class="container justify-content-center mt-5">
+    <p class="fs-4 fw-normal text-center">Booking Successful !</p>
+    <div class="row col-4 offset-4">
+        <!-- Display booking information -->
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Guest Name: {{ customer_detail[1] }} {{ customer_detail[2] }}</li>
+            <li class="list-group-item">Site ID: {{ site_id }}</li>
+            <li class="list-group-item">Arrival Date: {{ bookingdate }}</li>
+            <li class="list-group-item">Departure Date: {{ departure_date }}</li>
+            <li class="list-group-item">Number of Nights: {{ bookingnights }}</li>
+            <li class="list-group-item">Occupancy: {{ occupancy }}</li>
+        </ul>
+    </div>
+    <div class="row justify-content-center mt-4">
+        <a href="{{ url_for('booking')}}" class="btn btn-outline-primary col-auto">Make Another Booking</a>
+    </div>
 </div>
 
 {% endblock %}

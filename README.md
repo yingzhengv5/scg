@@ -4,11 +4,11 @@
 
 • For camplist.html, two scenarios need to be considered: whether the selected date has bookings or doesn't have any bookings. Therefore, an If statement should be used for display, and only necessary information like name, campsite, and occupancy should be displayed.
 
-• Make a booking, all nights of the booking should be added to the database, so a loop from the first night until the last night is necessary. On the bookingform.html page, I set the date to read-only to avoid users changing the date on this page while the available sites do not update accordingly. They can go back to select another date to ensure the displayed sites are always available. A "booking successful" message to confirm the booking is displayed after submitting.
+• Make a booking, all nights of the booking should be added to the database, so a loop from the first night until the last night is necessary. On the bookingform.html page, I set the date to read-only to avoid users changing the date on this page while the available sites do not update accordingly. They can go back to select another date to ensure the displayed sites are always available. After submitting, a 'booking successful' message and booking details will be displayed.
 
 • Search customer, as this part only displays information, the default GET method is suitable. Get the search data to compare with the database using %LIKE%, so with partial text matched, the appropriate customers can be displayed. When I finished this display, I noticed that editing a customer would require the customer to be displayed first, so it’s an efficient way to grab the customer’s ID when displaying them and add an edit button on the same page. The edit button will direct to a new route to handle the data afterward.
 
-• For adding a customer, validate each input, such as allowing only letters for the name, only numbers for the phone, and ensuring the email has an @ symbol. I used some regex to set a special pattern to achieve the validation. An "add successful" message should be displayed after submission.
+• For adding a customer, validate each input, such as allowing only letters for the name, only numbers for the phone, and ensuring the email has an @ symbol. I used some regex to set a special pattern to achieve the validation. After submitting, an 'add successful' message and customer details will be displayed.
 
 • For editing a customer, I noticed that it would duplicate the ‘Search Customer’ display. So, I integrated both routes to make it “Search/Edit Customer.” In addition, editing a customer can share the same page with adding a customer as the required input information is the same. I used an If statement to do this.
 

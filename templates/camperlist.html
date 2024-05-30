@@ -15,7 +15,7 @@
         <!--Display campers in table-->
         <div class="row justify-content-center mb-3">
             <div class="col-8 text-center">
-                <table class="table table-default table-hover table-bordered caption-top">
+                <table class="table table-default table-hover table-bordered caption-top mt-2">
                     <caption>Bookings on {{ campdate }}</caption>
                     <thead>
                         <tr>
@@ -35,9 +35,15 @@
                 </table>
             </div>
         </div>
+        <div class="row justify-content-center">
+            <a href="{{ url_for('campers')}}" class="btn btn-outline-primary mt-2 col-auto">Check other dates</a>
+        </div>
     </form>
     {% else %}
-    <p class="row justify-content-center fs-6 fw-normal">There is no booking for the selected date</p>
+    <div class="row justify-content-center">
+        <p class="fs-6 fw-normal text-center">There is no booking for the selected date</p>
+        <a href="{{ url_for('campers')}}" class="btn btn-outline-primary mt-2 col-auto">Check other dates</a>
+    </div>
     {% endif %}
 </div>
 {% endblock %}

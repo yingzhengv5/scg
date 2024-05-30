@@ -67,19 +67,20 @@ def makebooking():
     customerId = request.form.get('customer')
     bookingDate = request.form.get('bookingdate')
     firstNight = date.fromisoformat(bookingDate)
-    bookingNight = request.form.get('bookingnights')
+    bookingNights = request.form.get('bookingnights')
     occupancy = request.form.get('occupancy')
     connection = getCursor() 
     # Add all booking nights to database
-    for night in range (int(bookingNight)):
+    for night in range (int(bookingNights)):
         booking_date = firstNight + timedelta(days=night)
         connection.execute("INSERT INTO bookings(site, customer, booking_date, occupancy) \
                        VALUES(%s, %s, %s, %s);",(siteId, customerId, booking_date, occupancy,))
-    return redirect(url_for("booking_success"))
-
-@app.route("/booking/add/successful")
-def booking_success():
-    return render_template("bookingsuccess.html")
+    # Get customer details
+    connection.execute("SELECT * FROM customers WHERE customer_id=%s;", (customerId,))
+    customerDetail = connection.fetchone()
+    # Get departure date
+    departureDate = firstNight + timedelta(days=int(bookingNights))
+    return render_template("bookingsuccess.html", customer_detail = customerDetail, site_id = siteId, bookingdate = bookingDate, bookingnights = bookingNights, departure_date = departureDate, occupancy = occupancy)
 
 @app.route("/customer/search")
 def search_customer():

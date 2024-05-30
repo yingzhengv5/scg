@@ -51,9 +51,11 @@
     </form>
 
     {% else %}
-    <p class="row justify-content-center fs-6 fw-normal">No available sites for the selected date, please check another
-        date.</p>
-
+    <div class="row justify-content-center">
+        <p class="fs-6 fw-normal text-center">No available sites for the selected date, please check another
+            date.</p>
+        <a href="{{ url_for('booking')}}" class="btn btn-outline-primary mt-2 col-auto">Go Back</a>
+    </div>
     {% endif %}
 </div>
 {% endblock %}

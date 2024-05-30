@@ -9,9 +9,9 @@
     </div>
 
     <!--Display selected customers' report -->
-    <div class="row justify-content-center mb-3 mt-2">
+    <div class="row justify-content-center mb-3">
         <div class="col-10 text-center">
-            <table class="table table-default table-hover table-bordered">
+            <table class="table table-default table-hover table-bordered mt-3">
                 <thead>
                     <tr>
                         <th>Customer Name</th>
@@ -30,6 +30,9 @@
                 {% endfor %}
             </table>
         </div>
+    </div>
+    <div class="row justify-content-center">
+        <a href="{{ url_for('summary_report')}}" class="btn btn-outline-primary my-2 col-auto">Go Back</a>
     </div>
 </div>
 {% endblock %}
