@@ -23,7 +23,7 @@
 
 • Careful use of form-check ensures the invalid-feedback class is on the same grid with the input that needs validation. Also, form-control and form-label make the form format look nicer.
 
-• For table display, I chose table-hover and table-bordered to make it stand out and used <thead> to fix the first row of the table.
+• For the table display, I chose 'table-hover' and 'table-bordered' to make it stand out and fixed the first row of the table.
 
 • For multiple select, I put a disabled and sticky-top option “Hold Ctrl to select multiple customers” to indicate to the user that they can select multiple customers.
 <br>
@@ -77,8 +77,8 @@ Data type : datetime
 ```
 
 5.
-• Add a login/register page with fields for a username (which can be the email address) and password for authentication. Create a separate 'users' table to store user credentials, including a securely hashed password.
-• In the 'bookings' table, add a 'payment_status' column to track the payment status of the booking, such as "paid online" or "pay upon arrival." This will help in effectively managing the payment statuses of bookings.
+<p>Add a login/register page with fields for a username (which can be the email address) and password for authentication. Create a separate 'users' table to store user credentials, including a securely hashed password.</p>
+<p>In the 'bookings' table, add a 'payment_status' column to track the payment status of the booking, such as "paid online" or "pay upon arrival." This will help in effectively managing the payment statuses of bookings.</p>
 <br>
 
 ## References: 
