@@ -7,11 +7,14 @@
             <h1 class="fs-3 fw-normal text-center">Choose the date you'd like view who is camping</h1>
         </div>
     </div>
-    <form action="{{ url_for('campers') }}" method="POST">
+    <form action="{{ url_for('campers') }}" method="POST" class="needs-validation" novalidate>
         <div class="row justify-content-center mb-3 g-2">
             <div class="col-3">
                 <!-- Choose a date to view campers -->
-                <input class="form-control" type="date" value="{{currentdate}}" name="campdate" />
+                <input class="form-control" type="date" value="{{currentdate}}" name="campdate" required>
+                <div class="invalid-feedback">
+                    Please select a date
+                </div>
             </div>
             <div class="col-2">
                 <input class="btn btn-success" type="submit" />

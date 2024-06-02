@@ -12,8 +12,11 @@
             <div class="col-md-6">
                 <label class="form-label" for="bookingdate">Choose start night of booking</label>
                 <!-- Choose start booking date -->
-                <input class="form-control" type="date" min="{{currentdate}}" value="{{currentdate}}"
-                    name="bookingdate" />
+                <input class="form-control" type="date" min="{{currentdate}}" value="{{currentdate}}" name="bookingdate"
+                    required>
+                <div class="invalid-feedback">
+                    Please select a date
+                </div>
             </div>
         </div>
         <div class="row justify-content-center p-0 mb-4">
@@ -21,7 +24,8 @@
                 <label class="form-label" for="bookingnights">Number of nights<span class="fs-6 fw-light"> (Max
                         5)</span></label>
                 <!-- Choose stay nights -->
-                <input class="form-control" type="number" name="bookingnights" min="1" max="5" step="1" value="1" />
+                <input class="form-control" type="number" name="bookingnights" min="1" max="5" step="1" value="1"
+                    required>
                 <div class="invalid-feedback">
                     Please enter a number between 1 - 5
                 </div>
@@ -30,7 +34,7 @@
                 <label class="form-label" for="occupancy">Number of people<span class="fs-6 fw-light"> (Max
                         8)</span></label>
                 <!-- Choose number of guests -->
-                <input class="form-control" type="number" name="occupancy" min="1" max="8" step="1" value="1" />
+                <input class="form-control" type="number" name="occupancy" min="1" max="8" step="1" value="1" required>
                 <div class="invalid-feedback">
                     Please enter a number between 1 - 8
                 </div>
