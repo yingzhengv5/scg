@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row mt-5 mb-3 justify-content-center">
         <div class="col">
-            <h2 class="fs-3 fw-normal text-center text-dark">Selwyn Campground - Booking Summary</h2>
+            <h1 class="fs-3 fw-normal text-center text-dark">Selwyn Campground - Booking Summary</h1>
         </div>
     </div>
 
@@ -20,19 +20,21 @@
                     </tr>
                 </thead>
                 {% for report in reports%}
-                <tr>
-                    <td>{{ report[1] }} {{ report[2] }}</td>
-                    <!-- The number of times 'customer' appears in the booking table represents the total number of nights booked -->
-                    <td>{{ report[3] }}</td>
-                    <!--If no booking history, set occupancy to 0-->
-                    <td>{{ report[4] if report[4] else 0}}</td>
-                </tr>
-                {% endfor %}
+                <tbody>
+                    <tr>
+                        <td>{{ report[1] }} {{ report[2] }}</td>
+                        <!-- The number of times 'customer' appears in the booking table represents the total number of nights booked -->
+                        <td>{{ report[3] }}</td>
+                        <!--If no booking history, set occupancy to 0-->
+                        <td>{{ report[4] if report[4] else 0}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <a href="{{ url_for('summary_report')}}" class="btn btn-outline-primary my-2 col-auto">Go Back</a>
+    <div class="row justify-content-center mb-5 mt-2">
+        <a href="{{ url_for('summary_report')}}" class="btn btn-outline-primary col-auto">Go Back</a>
     </div>
 </div>
 {% endblock %}
