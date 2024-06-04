@@ -13,10 +13,10 @@
         <div class="row justify-content-center mb-3 g-2">
             <div class="col-4">
                 <!-- Only allow letters or numbers -->
-                <input class="form-control" type="text" name="search_customer" pattern="[A-Za-z]*|[0-9]*"
+                <input class="form-control" type="text" name="search_customer" pattern="[A-Za-z\s]*|[0-9]*"
                     placeholder="Name or Phone" required>
                 <div class="invalid-feedback">
-                    Please enter letters (a-z,A-Z) or numbers only
+                    Please enter letters (a-z, A-Z) and spaces, or numbers only.
                 </div>
             </div>
         </div>

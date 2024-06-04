@@ -88,9 +88,16 @@ def search_customer():
     searchCustomer = request.args.get('search_customer')
     if searchCustomer:
         connection = getCursor()
-        # Search for matching customers, including partial text matches
-        connection.execute("SELECT * FROM customers WHERE firstname LIKE %s OR familyname LIKE %s OR phone LIKE %s;",\
-                            (f"%{searchCustomer}%", f"%{searchCustomer}%", f"%{searchCustomer}%"))
+        # Split search string into a list based on the space
+        searchParts = searchCustomer.split(' ')
+        if len(searchParts) == 1:
+            # If there's only one part, search in firstname, familyname, and phone, including partial text matches
+            connection.execute("SELECT * FROM customers WHERE firstname LIKE %s OR familyname LIKE %s OR phone LIKE %s;",\
+                                (f"%{searchParts[0]}%", f"%{searchParts[0]}%", f"%{searchParts[0]}%"))
+        elif len(searchParts) >= 2:
+            # If there are two or more parts, match the first part with firstname and the second part with familyname
+            connection.execute("SELECT * FROM customers WHERE firstname LIKE %s AND familyname LIKE %s;",\
+                                (f"%{searchParts[0]}%", f"%{searchParts[1]}%"))
         matchedCustomers = connection.fetchall()
         return render_template("matchedcustomer.html", matched_customers = matchedCustomers)
     # Get search data if it doesn't exist
