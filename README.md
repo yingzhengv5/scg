@@ -1,35 +1,35 @@
-## Project Report – Part 1: Design Decisions
 
-### **Functional Parts:**
+# <center>Project Report</center>
 
-• For camplist.html, two scenarios need to be considered: whether the selected date has bookings or doesn't have any bookings. Therefore, an If statement should be used for display, and only necessary information like name, campsite, and occupancy should be displayed.
+## <center>Part 1: Design Decisions</center>
 
-• Make a booking, all nights of the booking should be added to the database, so a loop from the first night until the last night is necessary. On the bookingform.html page, I set the date to read-only to avoid users changing the date on this page while the available sites do not update accordingly. They can go back to select another date to ensure the displayed sites are always available. After submitting, a 'booking successful' message and booking details will be displayed.
+After walking through the brief, I decided to focus on getting the functional aspects working first and then dive into the layout later, because getting the core functionalities working first would be the key for the entire project. I knew that tweaking the layout could be time-consuming, since I'd need to continuously test and adjust it to get the desired results.
 
-• Search customer, as this part only displays information, the default GET method is suitable. Get the search data to compare with the database using %LIKE%, so with partial text matched, the appropriate customers can be displayed. When I finished this display, I noticed that editing a customer would require the customer to be displayed first, so it’s an efficient way to grab the customer’s ID when displaying them and add an edit button on the same page. The edit button will direct to a new route to handle the data afterward.
+For the camplist.html, I had to consider two scenarios: whether the selected date had bookings or not. To address this, I decided to implement an if statement to control the display. I made sure to include only the essential information like name, campsite, and occupancy. There is no need to display customer ID because it’s useless for office staff; they don’t need to know that information. This way, I can keep the interface clean.
 
-• For adding a customer, validate each input, such as allowing only letters for the name, only numbers for the phone, and ensuring the email has an @ symbol. I used some regex to set a special pattern to achieve the validation. After submitting, an 'add successful' message and customer details will be displayed.
+Next up was the booking process. I knew that adding a booking meant adding all nights of the booking to the database. So, I set up a loop to iterate from the first night to the last. On the bookingform.html page, I made the date field read-only to prevent users from altering it directly on that page. This ensured that the available sites always matched the selected date. According to my experience, usually after making a booking from a website, the booking details always displayed on the screen for users to review, so I made the same thing.
 
-• For editing a customer, I noticed that it would duplicate the ‘Search Customer’ display. So, I integrated both routes to make it “Search/Edit Customer.” In addition, editing a customer can share the same page with adding a customer as the required input information is the same. I used an If statement to do this.
+When it came to searching for customers, I opted for the default GET method since this part only involved displaying information. Using the %LIKE% comparison in SQL, I could match partial text to retrieve relevant customer data. However, at the beginning, I didn’t consider the full name was entered, which is the situation there should be a space between the first name and family name, so I fixed my code to ensure it can pass the full name check as well. At this point, I also noticed that editing a customer’s route would require the customer to be displayed first, so it’s an efficient way to grab the customer’s ID when displaying them and add an edit button on the same page. The edit button can direct to a new route to handle the data afterward.
 
-• For the report, I decided to make a multiple select in case the user wants to see multiple reports at once. I used a left join for display because all the selected customers should be displayed even if they don’t have any bookings. In SQL booking table, each row is a booking for one night. The number of times 'customer' appears in the booking table represents the total number of nights booked. The report is ordered by booking nights descending, so all the customers who had booking history can be displayed at the top.
+For adding a customer, I implemented thorough input validation using regex patterns. This ensured that only valid data was accepted, such as letters for the name, and numbers for the phone. After clicking the update button, the updated details were displayed for user review.
 
+As I mentioned earlier, that searching for customers and editing customers could share a template, so I merged both routes into a single "Search/Edit Customer" feature on the home page. This not only simplified the user experience but also reduced redundancy in the codebase. Additionally, the edit customer display should be the same as adding a customer, so I decided to share a template for both functions, using If statements to control the flow.
 
-### **Bootstrap Layout:**
+For generating reports, when I wrote this route for the first time, I only allowed the user to select one customer each time. But after rereading the page 7 requirement “Considered order and layout,” my understanding is if there are multiple reports, I should consider the order of the layout. So I decided to use a multiple select option instead; this can cater to users who may want to view multiple reports at a time. I used a left join in SQL to ensure that all selected customer reports were displayed, even if the customer had no bookings; the data should be displayed as 0. The total nights of booking are the total rows of displayed results, so I counted the ‘customer’ appears time for this data. As for average occupancy, after testing, I made only 2 decimals displayed to make the table clean. If users see multiple reports at once, the table order is descending by the nights so whoever has a booking history can be displayed prioritized.
 
-• Even though this is a simple web page, the home button is still essential to make the web look more professional, so the navbar-brand with the text “Selwyn Campground” can lead the user to the home page. A welcome picture is displayed on the home page only. The navbar is sticky to the top, so it stays displayed on the page when the user scrolls down.
+In addition to the decisions above, I added a Go Back button to the last template of each route. This can give users an easy way back to the functional page; for example, to add another booking or edit another customer, they can click the button on the page directly as opposed to relying on the browser go-back arrow.
 
-• All pages use justify-content-center, and all titles use the same top margin and font size. This can make the user interface consistent throughout.
+In terms of the user interface, I wanted to make it user-friendly. Even though this is a simple web page, the home button is still essential to make the web look more professional; "Selwyn Campground" on navbar realized this function. After I walked through the other campground websites, I made a welcome picture on the home page because I think this can create a positive first impression for visitors even though this is only for office staff use. To enhance usability, I made the navbar sticky, ensuring it remained visible as users scrolled through the content.
 
-• Careful use of form-check ensures the invalid-feedback class is on the same grid with the input that needs validation. Also, form-control and form-label make the form format look nicer.
+Consistency is the key to the entire interface design. I used justify-content-center for justification and used the same size font on the same level of text. Form elements were styled using form-control and form-label classes for a pretty look, while form-check ensured that validation feedback is reasonable.
 
-• For the table display, I chose 'table-hover' and 'table-bordered' to make it stand out and fixed the first row of the table.
+To make tabular data more interactive, I opted for 'table-hover' and 'table-bordered' styles, enhancing readability. Additionally, I implemented a sticky-top option for multiple select, prompting users to hold Ctrl to select multiple customers, thereby improving usability and offering a guide for users.
 
-• For multiple select, I put a disabled and sticky-top option “Hold Ctrl to select multiple customers” to indicate to the user that they can select multiple customers.
+In summary, every decision I made was meant to enhance functionality, usability, and aesthetics, creating a user-friendly and clean display on the Selwyn Camp internal system.
 <br>
 <br>
 
-## Project Report – Part 2: Database questions
+## <center>Part 2: Database questions</center>
 
 1.
 
@@ -69,19 +69,18 @@ INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('U5', '2');
 ```
 
 4.
-
-```
-Table: bookings 
-New column: order_date 
-Data type : datetime 
-```
+<ul>
+    <li>Table: bookings</li>
+    <li>New column: order_date</li>
+    <li>Data type : datetime</li>
+</ul>
 
 5.
 <p>Add a login/register page with fields for a username (which can be the email address) and password for authentication. Create a separate 'users' table to store user credentials, including a securely hashed password.</p>
 <p>In the 'bookings' table, add a 'payment_status' column to track the payment status of the booking, such as "paid online" or "pay upon arrival." This will help in effectively managing the payment statuses of bookings.</p>
 <br>
 
-## References: 
+## <center>References:</center> 
 
 Unsplash. https://unsplash.com/photos/woman-and-a-dog-inside-outdoor-tent-near-body-of-water-eDgUyGu93Yw
 
