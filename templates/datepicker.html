@@ -12,8 +12,8 @@
             <div class="col-md-6">
                 <label class="form-label" for="bookingdate">Choose start night of booking</label>
                 <!-- Choose start booking date -->
-                <input class="form-control" type="date" min="{{currentdate}}" value="{{currentdate}}" name="bookingdate"
-                    required>
+                <input class="form-control" type="date" min="{{currentdate}}" max="9999-12-31" value="{{currentdate}}"
+                    name="bookingdate" required>
                 <div class="invalid-feedback">
                     Please select a date
                 </div>
