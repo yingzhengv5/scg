@@ -11,7 +11,7 @@
     <form action="{{ url_for('search_customer')}}" class="needs-validation" novalidate>
         <!--Prompt user search by Name or Phone-->
         <div class="row justify-content-center mb-3 g-2">
-            <div class="col-4">
+            <div class="col-5">
                 <!-- Only allow letters or numbers -->
                 <input class="form-control" type="text" name="search_customer" pattern="[A-Za-z\s]*|[0-9]*"
                     placeholder="Name or Phone" required>
@@ -21,7 +21,7 @@
             </div>
         </div>
 
-        <div class="d-grid gap-2 col-1 mx-auto">
+        <div class="d-grid gap-2 col-2 mx-auto">
             <input class="btn btn-warning" type="submit" value="Search">
         </div>
     </form>

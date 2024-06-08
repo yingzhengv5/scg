@@ -9,7 +9,7 @@
     </div>
     <form action="{{ url_for('campers') }}" method="POST" class="needs-validation" novalidate>
         <div class="row justify-content-center mb-3 g-2">
-            <div class="col-3">
+            <div class="col-4">
                 <!-- Choose a date to view campers -->
                 <input class="form-control" type="date" value="{{currentdate}}" name="campdate" min="1000-01-01"
                     max="9999-12-31" required>

@@ -16,7 +16,7 @@
         <!--Display selected customer's default value and allow user to change-->
         <input type="hidden" id="customer_id" name="customer_id" value="{{ customer[0] }}">
         <div class="row justify-content-center mb-3">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <label class="form-label" for="firstname">First Name:</label>
                 <!-- Only allow letters -->
                 <input class="form-control" type="text" id="firstname" name="firstname" pattern="[A-Za-z]*"
@@ -25,7 +25,7 @@
                     Please enter letters (a-z,A-Z) only
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <label class="form-label" for="familyname">Family Name:</label>
                 <!-- Only allow letters -->
                 <input class="form-control" type="text" id="familyname" name="familyname" pattern="[A-Za-z]*"
@@ -37,14 +37,14 @@
         </div>
 
         <div class="row justify-content-center mb-3">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <label class="form-label" for="email">Email:</label>
                 <input class="form-control" type="email" id="email" name="email" value="{{ customer[3] }}" required>
                 <div class="invalid-feedback">
                     Please enter a valid email address
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <label class="form-label" for="phone">Phone:</label>
                 <!-- Only allow numbers -->
                 <input class="form-control" type="tel" id="phone" name="phone" value="{{ customer[4] }}"
@@ -54,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-grid gap-2 col-3 mx-auto">
+        <div class="d-grid gap-2 col-4 mx-auto">
             <input class="btn btn-success" type="submit" value="Update">
         </div>
     </form>
@@ -72,7 +72,7 @@
     <form action="/customer/add" method="POST" class="needs-validation" novalidate>
         <!--Prompt user input with reasonable validation message-->
         <div class="row justify-content-center mb-3">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <label class="form-label" for="firstname">First Name:</label>
                 <!-- Only allow letters -->
                 <input class="form-control" type="text" id="firstname" name="firstname" pattern="[A-Za-z]*"
@@ -81,7 +81,7 @@
                     Please enter letters (a-z,A-Z) only
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <label class="form-label" for="familyname">Family Name:</label>
                 <!-- Only allow letters -->
                 <input class="form-control" type="text" id="familyname" name="familyname" pattern="[A-Za-z]*"
@@ -93,14 +93,14 @@
         </div>
 
         <div class="row justify-content-center mb-3">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <label class="form-label" for="email">Email:</label>
                 <input class="form-control" type="email" id="email" name="email" required>
                 <div class="invalid-feedback">
                     Please enter a valid email address
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <label class="form-label" for="phone">Phone:</label>
                 <!-- Only allow numbers -->
                 <input class="form-control" type="tel" id="phone" name="phone" pattern="[0-9]{7,12}"
@@ -112,10 +112,10 @@
         </div>
 
         <div class="row justify-content-center mb-3">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <input class="btn btn-success" type="submit" value="Submit">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <input class="btn btn-secondary" type="reset" value="Reset">
             </div>
         </div>
