@@ -1,7 +1,7 @@
 
-# <center>Project Report</center>
+# Project Report
 
-## <center>Part 1: Design Decisions</center>
+## Part 1: Design Decisions
 
 After walking through the brief, I decided to focus on getting the functional aspects working first and then dive into the layout later, because getting the core functionalities working first would be the key for the entire project. I knew that tweaking the layout could be time-consuming, since I'd need to continuously test and adjust it to get the desired results.
 
@@ -29,7 +29,7 @@ In summary, every decision I made was meant to enhance functionality, usability,
 <br>
 <br>
 
-## <center>Part 2: Database questions</center>
+## Part 2: Database questions
 
 1.
 
@@ -76,11 +76,13 @@ INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('U5', '2');
 </ul>
 
 5.
-<p>Add a login/register page with fields for a username (which can be the email address) and password for authentication. Create a separate 'users' table to store user credentials, including a securely hashed password.</p>
-<p>In the 'bookings' table, add a 'payment_status' column to track the payment status of the booking, such as "paid online" or "pay upon arrival." This will help in effectively managing the payment statuses of bookings.</p>
+<ul>
+    <li>Add a login/register page with fields for a username (which can be the email address) and password for authentication. Create a separate 'users' table to store user credentials, including a securely hashed password.</li>
+    <li>In the 'bookings' table, add a 'payment_status' column to track the payment status of the booking, such as "paid online" or "pay upon arrival." This will help in effectively managing the payment statuses of bookings.</li>
+</ul>
 <br>
 
-## <center>References:</center> 
+## References:
 
 Unsplash. https://unsplash.com/photos/woman-and-a-dog-inside-outdoor-tent-near-body-of-water-eDgUyGu93Yw
 
