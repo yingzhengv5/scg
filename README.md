@@ -1,4 +1,3 @@
-# Project Link : https://yingzheng.pythonanywhere.com/
 # Project Report  
 
 ## Part 1: Design Decisions
@@ -81,6 +80,8 @@ INSERT INTO `sites` (`site_id`, `occupancy`) VALUES ('U5', '2');
     <li>In the 'bookings' table, add a 'payment_status' column to track the payment status of the booking, such as "paid online" or "pay upon arrival." This will help in effectively managing the payment statuses of bookings.</li>
 </ul>
 <br>
+
+Project link : https://yingzheng.pythonanywhere.com/
 
 ## References:
 
